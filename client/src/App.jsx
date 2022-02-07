@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes} from "react-router-dom";
 import "./App.css"
 import Helpdesk from './Helpdesk';
+import Authentication from './Authentication';
+import Login from "./Login"
 import Failure from './Failure';
+import Home from './Home';
 
 function App() {
+// const [token, setToken] = useState();
+
+// if (!token) {
+//     return <Authentication setToken={setToken} />
+// }
+
     return(
 
         <div className = "wrapper">
-            <h1>Please either sign up or log in</h1>
             <BrowserRouter>
                 <Routes>
-                    <Route exact path="/helpdesk" element={<Helpdesk/>}/>
-                    <Route exact path="/failure" element={<Failure/>}/>
+                    <Route exact path="/" element={<Home/>}/>   
+                    <Route exact path="/signup" element={<Authentication/>}/>
+                    <Route exact path="/login" element={<Login/>}/>
                 </Routes>
             </BrowserRouter>
         </div>

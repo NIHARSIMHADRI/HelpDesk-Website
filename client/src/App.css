@@ -98,6 +98,16 @@ body {
   color: #61dafb;
 }
 
+.links {
+  margin-bottom: 200 px;
+  margin-left: 1000 px;
+}
+
+.signLink {
+  margin-bottom: 200 px;
+  margin-left: 1000 px;
+}
+
 .formStuff.hidden {
   visibility: hidden;
 }

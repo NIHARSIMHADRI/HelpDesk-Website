@@ -75,8 +75,8 @@ function Authentication() {
           );
         })} */}
 
-        <h1 class="authenticationText">Please Log In to the Helpdesk Application</h1>
-        <h2 class="authenticationText">Make sure your username is 5 characters long and your password is 8 characters long</h2>
+        <h1 className="authenticationText">Please Log In to the Helpdesk Application</h1>
+        <h2 className="authenticationText">Make sure your username is 5 characters long and your password is 8 characters long</h2>
 
         <div className='inputStyling'>
           <input className="formStyle" type="text" placeholder="username..." onChange={(event) => {
