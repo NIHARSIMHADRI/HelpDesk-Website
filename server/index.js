@@ -54,8 +54,18 @@ app.route("/users").get(function(req, res){
   })
 });
 
-app.route("/users/:userTasks").get(function(req, res){
-  UserModel.findOne({username: req.params.userTasks}, function(err, foundUser){
+app.route("/users/:username").get(function(req, res){
+  UserModel.findOne({username: req.params.username}, function(err, foundUser){
+    if (!err){
+      res.json(foundUser); 
+    } else {
+      res.json(err);
+    }
+  });
+});
+
+app.route("/users/:username/:password").get(function(req, res){
+  UserModel.findOne({username: req.params.username, password: req.params.password}, function(err, foundUser){
     if (!err){
       res.json(foundUser); 
     } else {

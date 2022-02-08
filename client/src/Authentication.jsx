@@ -3,10 +3,7 @@ import { useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
 import Button from '@mui/material/Button';
-
-// const api = axios.create({
-//   baseURL: 'localhost:5000/users'
-// })
+import { useNavigate } from 'react-router-dom';
 
 var usernameCheck = false;
 var passwordCheck = false;
@@ -16,6 +13,8 @@ function Authentication() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(true);
+  const [userExists, setUserExists] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("http://localhost:5000/users").then((response) => {
@@ -24,14 +23,24 @@ function Authentication() {
   }, [])
 
   const createUser = () => {
-    axios.post("http://localhost:5000/users", {
-      username,
-      password,
-    }).then((response) => {
-      setListOfUsers([...listOfUsers, {
+    axios.get("http://localhost:5000/users/" + username + "/").then((response) => {
+      console.log(response);
+      console.log(response.data);
+      if (response.data != null) {
+        setUserExists(true);
+      } else {
+        axios.post("http://localhost:5000/users", {
         username,
         password,
-      }]);
+        }).then((response) => {
+          setListOfUsers([...listOfUsers, {
+            username,
+            password,
+          }]);
+        })
+        setUserExists(false);
+        navigate('/helpdesk');
+      }
     })
   }
 
@@ -52,13 +61,13 @@ function Authentication() {
   }
 
   function buttonAppearance() {
-    console.log("usernameCheck: " + usernameCheck + " passwordCheck: " + passwordCheck);
+    //console.log("usernameCheck: " + usernameCheck + " passwordCheck: " + passwordCheck);
     if (usernameCheck === true && passwordCheck === true) {
       setDisable(false);
-      console.log("It is enabled");
+      //console.log("It is enabled");
     } else {
       setDisable(true);
-      console.log("It is disabled");
+      //console.log("It is disabled");
     }
   }
 
@@ -75,22 +84,24 @@ function Authentication() {
           );
         })} */}
 
-        <h1 className="authenticationText">Please Log In to the Helpdesk Application</h1>
+        <h1 className="authenticationText">Please Sign Up For the Helpdesk Application</h1>
         <h2 className="authenticationText">Make sure your username is 5 characters long and your password is 8 characters long</h2>
 
         <div className='inputStyling'>
-          <input className="formStyle" type="text" placeholder="username..." onChange={(event) => {
+          <input type="text" placeholder="username..." onChange={(event) => {
             setUsername(event.target.value);
             usernameLengthCheck(event);
             buttonAppearance();
           }}/>
-          <input className="formStyle" type="password" placeholder='password...' onChange={(event) => {
+          <input type="password" placeholder='password...' onChange={(event) => {
             setPassword(event.target.value);
             passwordLengthCheck(event);
             buttonAppearance();
           }}/>
         </div>
           <Button disabled={disable} variant = "contained" color = "primary" onClick={createUser}>Create Account</Button>
+
+          {userExists === true && <h1 style={{color: "red"}}>The user already exists and was not registered into the system</h1>}
 
       </div>
 
