@@ -2,6 +2,12 @@
   text-align: center;
 }
 
+/* * {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+} */
+
 .authenticationPage {
   border: 1px solid blue;
   display: flex;
@@ -47,7 +53,7 @@
   }
 } */
 
-.wrapper {
+.spacing {
   padding: 200px;
 }
 
@@ -94,13 +100,27 @@ body {
 }
 
 .authenticationPage.formStuff {
-  margin-bottom: 200 px;
+  margin-bottom: 200px;
   color: #61dafb;
 }
 
 .links {
-  margin-bottom: 200 px;
-  margin-left: 1000 px;
+  display: flex;
+  justify-content: center;
+}
+
+.link-1 {
+  border: 5px;
+  margin: 20px;
+}
+
+.link-2 {
+  border: 5px;
+  margin: 20px;
+}
+
+Link {
+  margin-top: 100px;
 }
 
 .signLink {
@@ -116,4 +136,44 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+header {
+  top: 0px;
+  position: relative; 
+  background-color: blue;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: -7px -10px;
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+}
+
+footer {
+  position: fixed;
+  text-align: center;
+  /* left:0; */
+  bottom: 0;
+  width: 100%;
+  height: 3rem;
+  margin: -7px -10px;
+  padding: 5px 32px;
+  /* background-color: yellow; */
+}
+
+#header-text {
+  color: orange;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+
+#footer-text {
+  color: purple;
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+}
+
+.bug-box {
+  background-color: green;
 }

@@ -17,7 +17,7 @@ function App() {
 
     return(
 
-        <div className = "wrapper">
+        <div>
             <BrowserRouter>
                 <Routes>
                     <Route exact path="/" element={<Home/>}/>   
